@@ -6,11 +6,14 @@ class Colors(enum.Enum):
     BLACK = 2
 
 class Piece(abc.ABC):
-    def __init__(self, color):
+    def __init__(self, color=None):
         self.color = color
         self.symbol = None
 
     def __str__(self):
+        if self.symbol == ".":
+            return self.symbol
+
         if self.color == Colors.WHITE:
             return self.symbol
 
@@ -19,6 +22,9 @@ class Piece(abc.ABC):
 
         else:
             raise TypeError("Piece does not have a color.")
+
+    def set_color(color):
+        self.color = color
 
 class Empty(Piece):
     def __init__(self):
